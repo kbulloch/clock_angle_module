@@ -1,6 +1,7 @@
 <?php
 
 function clock_angle_menu() {
+    $items = array();
     $items['clock_angle'] = array(
         'title' => 'Clock Angle'
         'page callback' => 'drupal_get_form',
@@ -44,7 +45,8 @@ function clock_angle_form_submit($form, &$form_state) {
 
     $minute_degree = $minute * 6;
     $hour_degree = $hour * 30;
-    $clock_angle = abs($hour_degree - $minute_degree);
+    $difference = $hour_degree - $minute_degree;
+    $clock_angle = abs($difference);
 
     $_SESSION['clock_angle_output'] = $clock_angle;
     $form_state['redirect'] = 'clock_angle_success';
